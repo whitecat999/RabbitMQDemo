@@ -1,0 +1,25 @@
+# SpringBoot 整合RabbitMQ基本配置
+server:
+  servlet:
+    context-path: /
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+  rabbitmq:
+    host: 192.168.1.100
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: / # 虚拟主机节点名(最上层的路由名, 用于隔离不同项目或者应用)
+    connection-timeout: 15000
+    # 采用消息确认模式
+    publisher-confirms: true
+    publisher-returns: true
+    template:
+      mandatory: true
+mybatis:
+  mapper-locations: classpath:mapping/*.xml

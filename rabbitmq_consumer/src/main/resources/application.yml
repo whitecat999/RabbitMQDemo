@@ -1,0 +1,20 @@
+# SpringBoot 整合RabbitMQ基本配置
+server:
+  servlet:
+    context-path: /
+  port: 8081
+spring:
+  rabbitmq:
+    host: 192.168.1.100
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: / # 虚拟主机节点名(最上层的路由名, 用于隔离不同项目或者应用)
+    connection-timeout: 15000 #连接超时时间
+    # SpringBoot整合RabbitMQ 消费端配置:
+    listener:
+      simple:
+        concurrency: 5 #默认并发数
+        max-concurrency: 10 #最大并发数
+        acknowledge-mode: manual #签收模式 AUTO自动签收,manual手工签收
+        prefetch: 1 #限流 同一时间只能消费一条消息
